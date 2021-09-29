@@ -18,14 +18,16 @@ import lombok.RequiredArgsConstructor;
 public class NewsController {
 
 	private final NewsRepository newsRepository;
+//	public static String[] arr = new String[200];
 
 	@GetMapping("/news")
-	public CMRespDto<List<News>> findAll() {
-
-//		for (int i = 0; i < 200; i++) {
-//			News news = newsRepository.findById(NaverCraw._id[i])
-//					.orElseThrow(() -> new MyAsyncNotFoundException("내용을 찾을 수 없습니다"));
-//		}
-		return new CMRespDto<>(1, "성공", newsRepository.findAll());
+	public CMRespDto<News> findAll() {
+		News news;
+		for (int i = 0; i < 100; i++) {
+			news = newsRepository.findById(NaverCraw.aidNumarr[i])
+					.orElseThrow(() -> new MyAsyncNotFoundException("내용을 찾을 수 없습니다"));
+			return new CMRespDto<>(1, "성공", news);
+		}
+		return null;
 	}
 }
